@@ -6,6 +6,8 @@
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/rspec3 for more book information.
 #---
+require_relative '../config/sequel'
+
 module ExpenseTracker
   RecordResult = Struct.new(:success?, :expense_id, :error_message)
 
