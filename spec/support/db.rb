@@ -6,14 +6,10 @@
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/rspec3 for more book information.
 #---
-module ExpenseTracker
-  RecordResult = Struct.new(:success?, :expense_id, :error_message)
-
-  class Ledger
-    def record(expense)
-      DB[:expenses].insert(expense)
-      id = DB[:expenses].max(:id)
-      RecordResult.new(true, id, nil)
-    end
+RSpec.configure do |c|
+  c.before(:suite) do
+    Sequel.extension :migration
+    Sequel::Migrator.run(DB, 'db/migrations')
+    DB[:expenses].truncate
   end
 end
