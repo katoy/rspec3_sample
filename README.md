@@ -25,3 +25,8 @@ curl での呼び出し
 $ curl localhost:9292/expenses/2017-06-10 -w "\n"
 []
 ```
+
+db の migration
+```
+$ bundle exec sequel -m ./db/migrations sqlite://db/development.db --echo
+```
